@@ -2,14 +2,14 @@
   "name": "six-degrees",
   "version": "1.0.0",
   "description": "",
-  "main": "populate-db.js",
+  "main": "appjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mongodb": "^3.5.9",
-    "mongoose": "^5.9.24"
+    "express": "^4.17.1",
+    "neo4j-driver": "^4.1.1"
   }
 }

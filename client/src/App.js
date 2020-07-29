@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Row, Container, Col, Button } from 'react-bootstrap';
+import Entry from './components/Entry';
 
 class App extends Component {
   constructor(props) {
@@ -17,11 +18,9 @@ class App extends Component {
 
     const actor1 = document.getElementById('actor1').value;
     const actor2 = document.getElementById('actor2').value;
-    const url = `http://localhost:9000/link/${actor1}/${actor2}`;
-    const response = await fetch(url);
+    const response = await fetch(`http://localhost:9000/link/${actor1}/${actor2}`);
     const data = await response.json();
     this.setState({ connection: data });
-
   }
 
   render() {
@@ -30,7 +29,7 @@ class App extends Component {
       return (
         <Container>
           {connection.map(entry => (
-            <Row>{entry}</Row>
+            <Entry name={entry} />
           ))}
         </Container>
       );

@@ -3,18 +3,17 @@ const express = require('express');
 const neo4j = require('neo4j-driver');
 const cors = require('cors');
 const fetch = require('node-fetch');
+const path = require('path');
 
 const driver = neo4j.driver(process.env.GRAPH_DB_HOST, neo4j.auth.basic(process.env.GRAPH_DB_USER, process.env.GRAPH_DB_PASS));
 const session = driver.session();
 const app = express();
 
 app.use(cors());
-app.use((req, res, next) => {
-    console.log('new request made:');
-    console.log('host: ', req.hostname);
-    console.log('path: ', req.path);
-    console.log('method: ', req.method);
-    next(); // continue to next middleware 
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.get('/link/:source/:dest', async (req, res) => {

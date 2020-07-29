@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Row, Container, Col, Button } from 'react-bootstrap';
+import { Form, Row, Container, Col, Button, CardColumns} from 'react-bootstrap';
 import Entry from './components/Entry';
 
 class App extends Component {
@@ -27,11 +27,11 @@ class App extends Component {
     const connection = this.state.connection
     if (connection) {
       return (
-        <Container>
+        <Row>
           {connection.map(entry => (
-            <Entry name={entry} />
+            <Entry name={entry.name} label={entry.label}/>
           ))}
-        </Container>
+        </Row>
       );
     } else {
       return (

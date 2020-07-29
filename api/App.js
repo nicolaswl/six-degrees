@@ -32,11 +32,15 @@ app.get('/link/:source/:dest', async (req, res) => {
                     endNode: end
             }) 
             YIELD nodeId 
-            RETURN gds.util.asNode(nodeId).name`, {});
+            RETURN gds.util.asNode(nodeId).name AS name,
+            LABELS(gds.util.asNode(nodeId)) AS label`, {});
         console.log(result.records);
         let data = [];
         result.records.forEach((record) => {
-            data.push(record._fields[0].trim());
+            data.push({
+                name: record._fields[0].trim(),
+                label: record._fields[1][0]
+            });
         })
         res.json(data);
     } catch (error) {

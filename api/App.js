@@ -5,7 +5,7 @@ const cors = require('cors');
 const fetch = require('node-fetch');
 const path = require('path');
 
-const driver = neo4j.driver(process.env.GRAPH_DB_HOST, neo4j.auth.basic(process.env.GRAPH_DB_USER, process.env.GRAPH_DB_PASS));
+const driver = neo4j.driver(process.env.GRAPHENEDB_BOLT_URL, neo4j.auth.basic(process.env.GRAPHENEDB_BOLT_USER, process.env.GRAPHENEDB_BOLT_PASSWORD));
 const session = driver.session();
 const app = express();
 

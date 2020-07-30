@@ -1,14 +1,15 @@
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config(/*{ path: '../.env' }*/);
 const express = require('express');
 const neo4j = require('neo4j-driver');
 const cors = require('cors');
 const fetch = require('node-fetch');
 const path = require('path');
 
+// configure db
 const driver = neo4j.driver(process.env.GRAPHENEDB_BOLT_URL, neo4j.auth.basic(process.env.GRAPHENEDB_BOLT_USER, process.env.GRAPHENEDB_BOLT_PASSWORD));
 const session = driver.session();
-const app = express();
 
+const app = express();
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'build')));
 

@@ -1,4 +1,4 @@
-require('dotenv').config(/*{ path: '../.env' }*/);
+require('dotenv').config({ path: '../.env' });
 const express = require('express');
 const neo4j = require('neo4j-driver');
 const cors = require('cors');

@@ -13,10 +13,10 @@ const Entry = (props) => {
             let data = null;
 
             if (props.label == "Actor") {
-                res = await fetch(`http://localhost:9000/a/${props.name}`);
+                res = await fetch(`/a/${props.name}`);
                 data = await res.json();
             } else {
-                res = await fetch(`http://localhost:9000/m/${props.name}`);
+                res = await fetch(`/m/${props.name}`);
                 data = await res.json();
             }
 

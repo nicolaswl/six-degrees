@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config();
 const express = require('express');
 const neo4j = require('neo4j-driver');
 const cors = require('cors');
@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.get('/link/:source/:dest', async (req, res) => {
@@ -55,12 +55,12 @@ app.get('/a/:actor', async (req, res) => {
 
     let img = null;
     let id = null;
-    if(data.results) {
+    if (data.results) {
         img = data.results[0].image;
         id = `https://www.imdb.com/name/${data.results[0].id}/`;
     }
 
-    res.json({id, img});
+    res.json({ id, img });
 });
 
 app.get('/m/:movie', async (req, res) => {
@@ -70,14 +70,15 @@ app.get('/m/:movie', async (req, res) => {
 
     let img = null;
     let id = null;
-    if(data.results) {
+    if (data.results) {
         img = data.results[0].image;
         id = `https://www.imdb.com/title/${data.results[0].id}/`;
     }
 
-    res.json({id, img});
+    res.json({ id, img });
 });
 
-app.listen(9000, () => {
-    console.log(`Ready on ${process.env.API_HOST}`);
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Ready on ${port}`);
 });

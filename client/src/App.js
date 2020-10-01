@@ -18,7 +18,7 @@ class App extends Component {
 
     const actor1 = document.getElementById('actor1').value;
     const actor2 = document.getElementById('actor2').value;
-    const response = await fetch(`http://localhost:9000/link/${actor1}/${actor2}`);
+    const response = await fetch(`/link/${actor1}/${actor2}`);
     const data = await response.json();
     this.setState({ connection: data });
   }
